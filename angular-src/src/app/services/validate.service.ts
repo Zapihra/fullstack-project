@@ -19,6 +19,7 @@ export class ValidateService {
   }
 
   validateDog(dog) {
+    console.log(dog);
     if(dog.name == undefined || dog.age == undefined || 
         dog.owner == undefined || dog.caredays == undefined ||
         dog.number == undefined) {

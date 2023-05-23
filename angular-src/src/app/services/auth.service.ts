@@ -36,12 +36,16 @@ export class AuthService {
   registerDog(dog){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/dog/register', dog, {headers: headers})
+    return this.http.post('http://localhost:3000/dogs/register', dog, {headers: headers})
       .map(res => res.json());
   };
 
-
-
+  getDog(dog){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/dogs/searchdog', dog, {headers: headers})
+    .map(res => res.json())
+  }
 
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);

@@ -1,13 +1,25 @@
-<div *ngIf="user">
-  <h2 class="page-header">Search dogs</h2>
-  <ul class="list-group">
-    <li class="list-group-item">{{dog.name}}</li>
-    <li class="list-group-item">{{dog.age}}</li>
-    <li class="list-group-item">{{dog.owner}}</li>
-    <li class="list-group-item">{{dog.caredays}}</li>
-    <li class="list-group-item">{{dog.number}}</li>
+<div>
+  <h2 class="search-header">Search dog</h2>
+  <form (submit)="onSearchSubmit()">
+    <div class="form-group">
+      <label>Dog's name</label>
+      <input type="text" [(ngModel)]="newname" name="newname" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Owners's name</label>
+      <input type="text" [(ngModel)]="newowner" name="newowner" class="form-control">
+    </div>
+    <input type="submit" value="Search" class="btn btn-primary">
+  </form>
+  
+  <ul class="list-group"> Result
+    <li class="list-group-item">name: {{rname}} </li>
+    <li class="list-group-item">age: {{rage}}</li>
+    <li class="list-group-item">owner: {{rowner}}</li>
+    <li class="list-group-item">caredays: {{rcaredays}}</li>
+    <li class="list-group-item">number: {{rnumber}}</li>
   </ul>
-
+  <h2 class="submit-header">Add dog to daycare</h2>
   <form (submit)="onRegisterDogSubmit()">
     <div class="form-group">
       <label>Dog's name</label>
@@ -27,7 +39,7 @@
     </div>
     <div class="form-group">
         <label>Owners number</label>
-        <input type="text" [(ngModel)]="caredays" name="caredays" class="form-control">
+        <input type="text" [(ngModel)]="number" name="number" class="form-control">
       </div>
     <input type="submit" value="Submit" class="btn btn-primary">
   </form>

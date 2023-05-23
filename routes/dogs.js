@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Dog = require('../models/dog')
 const config = require('../config/database');
+const passport = require('passport');
 
 //Register
 router.post('/register', (req, res, next) => {
@@ -24,4 +25,17 @@ router.post('/register', (req, res, next) => {
 
 });
 
+router.post('/searchdog', (req, res, next) => {
+    let newDog = Dog({
+        name: req.body.name,
+        owner: req.body.owner,
+    });
+    Dog.searchDog(newDog, (err, dog)=> {
+        if (dog == undefined) {
+            res.json({name: undefined});
+        }
+        else{res.send(dog);}
+    })
+
+});
 module.exports = router;

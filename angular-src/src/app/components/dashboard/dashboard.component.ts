@@ -17,6 +17,15 @@ export class DashboardComponent implements OnInit {
   caredays: String;
   number: String;
 
+  newname: String;
+  newowner: String;
+
+  rname: String;
+  rage: String;
+  rowner: String;
+  rcaredays: String;
+  rnumber: String;
+
   constructor(private validateService: ValidateService,
               private flashMessage: FlashMessagesService,
               private authService: AuthService,
@@ -25,15 +34,6 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
-
-    // this.authService.getDog().subscribe(profile => {
-    //   this.dogs = profile.dog
-    // },
-    // err => {
-    //   console.log(err);
-    //   return false;
-    // });
-
   }
 
   onRegisterDogSubmit() {
@@ -63,5 +63,27 @@ export class DashboardComponent implements OnInit {
     });
 
   }
+  onSearchSubmit() {
+    const dog = {
+      name: this.newname,
+      owner: this.newowner
+    }
 
+    this.authService.getDog(dog).subscribe(data => {
+      if(data.name == undefined) {
+        this.flashMessage.show('No dog found', {cssClass: 'alert-danger', timeout: 3000});
+        this.router.navigate(['/dashboard']);
+      }
+      else {
+        this.rname = data.name;
+        this.rage = data.age;
+        this.rowner = data.owner;
+        this.rcaredays = data.caredays;
+        this.rnumber = data.number;
+      }
+    })
+
+
+  }
 }
+
