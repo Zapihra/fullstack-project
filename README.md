@@ -18,4 +18,6 @@ or for the developer mode
     which enables to load the older version and then write
     `npm install -g angular-cli`
     - go to the angular directory and install dependencies with `npm install` in the terminal
+    - write ´ng serve´ in angular-src directory and `npm run start` that the mongodb server starts
+    - in the end write `ng build` in the angular-src file to build the public folder
     
